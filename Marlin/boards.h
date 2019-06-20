@@ -75,6 +75,7 @@
 #define BOARD_ULTIMAIN_2        72    // Ultimainboard 2.x (Uses TEMP_SENSOR 20)
 #define BOARD_RUMBA             80    // Rumba
 #define BOARD_BQ_ZUM_MEGA_3D    503   // bq ZUM Mega 3D
+#define BOARD_TAM_SERIES_1_REVA 506   // Type A Machines Series 1, Revision A
 #define BOARD_MAKEBOARD_MINI    431   // MakeBoard Mini v2.1.2 is a control board sold by MicroMake
 #define BOARD_TRIGORILLA_13     343   // TriGorilla Anycubic version 1.3 based on RAMPS EFB
 #define BOARD_TRIGORILLA_14     443   // TriGorilla Anycubic version 1.4 based on RAMPS EFB
