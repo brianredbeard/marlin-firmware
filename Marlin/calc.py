@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+
+X_MIN_POS =  -13
+X_MAX_POS =  211
+Y_MIN_POS =  -25
+Y_MAX_POS =  205
+MIN_PROBE_EDGE =   10
+X_PROBE_OFFSET_FROM_EXTRUDER = 47
+Y_PROBE_OFFSET_FROM_EXTRUDER = 27
+X_BED_SIZE = 220
+Y_BED_SIZE = 200
+
+#####
+
+#####
+
+def prRed(skk): print("\033[91m {}\033[00m" .format(skk)) 
+def prGreen(skk): print("\033[92m {}\033[00m" .format(skk)) 
+def prYellow(skk): print("\033[93m {}\033[00m" .format(skk)) 
+def prLightPurple(skk): print("\033[94m {}\033[00m" .format(skk)) 
+def prPurple(skk): print("\033[95m {}\033[00m" .format(skk)) 
+def prCyan(skk): print("\033[96m {}\033[00m" .format(skk)) 
+def prLightGray(skk): print("\033[97m {}\033[00m" .format(skk)) 
+def prBlack(skk): print("\033[98m {}\033[00m" .format(skk)) 
+
+#####
+
+#####
+
+
+
+LEFT_PROBE_BED_POSITION  = (X_MIN_POS + X_PROBE_OFFSET_FROM_EXTRUDER)
+RIGHT_PROBE_BED_POSITION = (X_MAX_POS - X_PROBE_OFFSET_FROM_EXTRUDER + MIN_PROBE_EDGE)
+FRONT_PROBE_BED_POSITION = (Y_MIN_POS + Y_PROBE_OFFSET_FROM_EXTRUDER + MIN_PROBE_EDGE)
+BACK_PROBE_BED_POSITION  = (Y_MAX_POS - Y_PROBE_OFFSET_FROM_EXTRUDER + MIN_PROBE_EDGE)
+
+print("LEFT_PROBE_BED_POSITION  = " , LEFT_PROBE_BED_POSITION)
+print("RIGHT_PROBE_BED_POSITION = " , RIGHT_PROBE_BED_POSITION)
+print("FRONT_PROBE_BED_POSITION = " , FRONT_PROBE_BED_POSITION)
+print("BACK_PROBE_BED_POSITION  = " , BACK_PROBE_BED_POSITION)
+
+Y_CENTER  = ((Y_BED_SIZE) / 2)
+X_CENTER  = ((X_BED_SIZE) / 2)
+
+X_MIN_BED = (X_CENTER - (X_BED_SIZE) / 2)
+Y_MIN_BED = (Y_CENTER - (Y_BED_SIZE) / 2)
+
+X_MAX_BED = (X_CENTER + (X_BED_SIZE) / 2)
+Y_MAX_BED = (Y_CENTER + (Y_BED_SIZE) / 2)
+
+MIN_PROBE_X = (max(X_MIN_BED + MIN_PROBE_EDGE, X_MIN_POS - X_PROBE_OFFSET_FROM_EXTRUDER))
+MIN_PROBE_Y = (max(Y_MIN_BED + MIN_PROBE_EDGE, Y_MIN_POS + Y_PROBE_OFFSET_FROM_EXTRUDER))
+MAX_PROBE_X = (min(X_MAX_BED - (MIN_PROBE_EDGE), X_MAX_POS + X_PROBE_OFFSET_FROM_EXTRUDER))
+MAX_PROBE_Y = (min(Y_MAX_BED - (MIN_PROBE_EDGE), Y_MAX_POS + Y_PROBE_OFFSET_FROM_EXTRUDER))
+
+print("MIN_PROBE_X = ", MIN_PROBE_X)
+print("MIN_PROBE_Y = ", MIN_PROBE_Y)
+print("MAX_PROBE_X = ", MAX_PROBE_X)
+print("MAX_PROBE_Y = ", MAX_PROBE_Y)
+
+if not (LEFT_PROBE_BED_POSITION >= MIN_PROBE_X):
+    prRed("LEFT_PROBE_BED_POSITION is less than MIN_PROBE_X")
+if not (RIGHT_PROBE_BED_POSITION <= MAX_PROBE_X):
+    prRed("RIGHT_PROBE_BED_POSITION is greater than MAX_PROBE_X")
+if not (FRONT_PROBE_BED_POSITION >= MIN_PROBE_Y):
+    prRed("FRONT_PROBE_BED_POSITION is less than MIN_PROBE_Y")
+if not (BACK_PROBE_BED_POSITION <= MAX_PROBE_Y):
+    prRed("BACK_PROBE_BED_POSITION is greater than MAX_PROBE_Y")
+
