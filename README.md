@@ -3,7 +3,7 @@
 
 ## About
 
-This repository contains modifications to the Marlin 3D printer firmware.
+This repository contains modifications to the [Marlin] 3D printer firmware.
 Different branches are maintained for the purpose of easily deploying the
 firmware.
 
@@ -29,7 +29,20 @@ state which can not be fast forwarded.
 6) While leaving a branch (as per #5) in a state which cannot be fast forwarded
 is considered abhorrent, the general state of many Marlin forks of having no
 usable history or isolated commits is even worse.
+7) All commits are performed against clean checkouts of files from upstream.
+The most commonly edited files will be:
+  - `Marlin/Configuration.h`
+  - `Marlin/Configuration_adv.h`
+8) All commits shall have a prefix in the commit message to allow users to
+easily isolated related commits.
 
+## Using this repository
+
+To use this repository it should be added as a separate remote to your existing
+marlin checkout.  From there, by fetching this repository, you will then have a
+clean history from which commits may be cherry picked.
+
+All 
 ## Branches
 
 ### [tam-series-1][tam-series-1]
@@ -51,7 +64,7 @@ This branch features a commit which sets up the various changes needed for the
 [BLtouch][bltouch] unit sold by Creality.
 
 
-
+[Marlin]: https://github.com/MarlinFirmware/Marlin
 [ender3]: https://www.creality3dofficial.com/collections/ender-series/products/official-creality-ender-3-3d-printer
 [bltouch]: https://www.creality3dofficial.com/products/creality-bl-touch
 [tam-series-1]: https://github.com/brianredbeard/marlin-firmware/tree/tam-series-1
