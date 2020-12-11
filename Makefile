@@ -1,4 +1,19 @@
+THIS_FILE := $(lastword $(MAKEFILE_LIST))
+EXTRA_MAKEFILES := $(strip $(wildcard Makefile.*.mk))
+
+ifneq ($(EXTRA_MAKEFILES),)
+  contents := $(shell echo including extra makefiles $(EXTRA_MAKEFILES))
+  include $(EXTRA_MAKEFILES)
+endif
+
+list:
+	@$(MAKE) -pRrq -f $(THIS_FILE) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+.PHONY: list
+
 help:
+	@echo "Generic Tasks:"
+	@echo "* list                         List all possible targets"
+	@echo ""
 	@echo "Tasks for local development:"
 	@echo "* tests-single-ci:             Run a single test from inside the CI"
 	@echo "* tests-single-local:          Run a single test locally"
